@@ -30,7 +30,7 @@
         background-color: #ddd;
       }
 
-      .tab[data-tab="true"] {
+      .tab.active {
         background-color: #ccc;
       }
 
@@ -42,30 +42,30 @@
         border-top: none;
       }
 
-      .tabpanel[data-tabpanel="true"] {
+      .tabpanel.active {
         display: block;
       }
     </style>
   </head>
   <body>
     <div class="tablist">
-      <a href="#" class="tab tab-js" data-tab="true">
+      <a href="#" class="tab tab-js active">
         tab 1
       </a>
-      <a href="#" class="tab tab-js" data-tab="false">
+      <a href="#" class="tab tab-js">
         tab 2
       </a>
-      <a href="#" class="tab tab-js" data-tab="false">
+      <a href="#" class="tab tab-js">
         tab 3
       </a>
     </div>
-    <div class="tabpanel tabpanel-js" data-tabpanel="true">
+    <div class="tabpanel tabpanel-js active">
       tab 1 content
     </div>
-    <div class="tabpanel tabpanel-js" data-tabpanel="false">
+    <div class="tabpanel tabpanel-js">
       tab 2 content
     </div>
-    <div class="tabpanel tabpanel-js" data-tabpanel="false">
+    <div class="tabpanel tabpanel-js">
       tab 3 content
     </div>
 
@@ -74,10 +74,10 @@
       const tabpanels = Array.from(document.querySelectorAll(".tabpanel-js"));
 
       function handleTab(tab, index) {
-        tabs.map(e => (e.dataset.tab = "false"));
-        tab.dataset.tab = "true";
-        tabpanels.map(e => (e.dataset.tabpanel = "false"));
-        tabpanels[index].dataset.tabpanel = "true";
+        tabs.map(e => e.classList.remove("active"));
+        tabpanels.map(e => e.classList.remove("active"));
+        tab.classList.add("active");
+        tabpanels[index].classList.add("active");
       }
 
       tabs.map((tab, index) => {
@@ -86,19 +86,22 @@
         });
       });
 
-      // ie
+      // ie9 ~
       var tabs = document.querySelectorAll(".tab-js");
       var tabpanels = document.querySelectorAll(".tabpanel-js");
 
       function handleTab(tab, index) {
         for (var i = 0; tabs.length > i; i++) {
-          tabs[i].setAttribute("data-tab", "false");
+          tabs[i].className = tabs[i].className.replace(" active", "");
         }
-        tab.setAttribute("data-tab", "true");
         for (var j = 0; tabpanels.length > j; j++) {
-          tabpanels[j].setAttribute("data-tabpanel", "false");
+          tabpanels[j].className = tabpanels[j].className.replace(
+            " active",
+            ""
+          );
         }
-        tabpanels[index].setAttribute("data-tabpanel", "true");
+        tab.className += " active";
+        tabpanels[index].className += " active";
       }
 
       Array.prototype.forEach.call(tabs, function(tab, index) {
