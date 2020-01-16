@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Carousel</title>
+    <style>
+      * {
+          box-sizing: border-box;
+        }
+
+      body {
+        margin: 0;
+      }
+
+      ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .carousel-wrapper {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+      }
+
+      .carousel {
+        display: flex;
+        transition: all 0.5s ease-in-out;
+      }
+
+      .carousel li {
+        margin-right: 1rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-width: calc(100% / 3);
+        height: 100vh;
+        background-color: #34495e;
+        font-size: 3rem;
+        color: rgba(255, 255, 255, 0.5);
+      }
+
+      .carousel li:nth-child(odd) {
+        background-color: #2c3e50;
+      }
+
+      .carousel-controls {
+        position: absolute;
+        top: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+      }
+
+      .carousel-controls button {
+        all: unset;
+        cursor: pointer;
+        width: 3.5rem;
+        height: 5rem;
+        background-color: rgba(0, 0, 0, 0.1);
+        font-size: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .carousel-controls__prev::before,
+      .carousel-controls__next::before {
+        display: block;
+        content: "";
+        width: 1.5rem;
+        height: 1.5rem;
+        border: 3px solid rgba(255, 255, 255, 0.8);
+        transform: rotate(45deg) translate(3px, -3px);
+        border-top: 0;
+        border-right: 0;
+        border-radius: 3px;
+      }
+
+      .carousel-controls__next::before {
+        transform: rotate(-135deg) translate(3px, -3px);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="carousel-wrapper">
+      <ul class="carousel" data-target="carousel">
+        <li data-target="carousel-item">1</li>
+        <li data-target="carousel-item">2</li>
+        <li data-target="carousel-item">3</li>
+        <li data-target="carousel-item">4</li>
+        <li data-target="carousel-item">5</li>
+        <li data-target="carousel-item">6</li>
+        <li data-target="carousel-item">7</li>
+        <li data-target="carousel-item">8</li>
+        <li data-target="carousel-item">9</li>
+      </ul>
+      <div class="carousel-controls">
+        <button class="carousel-controls__prev" data-control="prev">Prev</button>
+        <button class="carousel-controls__next" data-control="next">Next</button class="carousel-controls__next">
+      </div>
+    </div>
+
+    <script>
+      const carousel = document.querySelector("[data-target='carousel']"),
+            carouselItem = carousel.querySelector("[data-target='carousel-item']"),
+            prevControl = document.querySelector("[data-control='prev']"),
+            nextControl = document.querySelector("[data-control='next']");
+
+      const carouselItemStyle = window.getComputedStyle(carouselItem),
+            carouselItemMargin = parseInt(carouselItemStyle.marginRight),
+            carouselWidth = parseFloat(carouselItemStyle.width) * 3 + carouselItemMargin * 2,
+            carouselItemCount = carousel.querySelectorAll("[data-target='carousel-item']").length;
+
+      let offset = 0;
+
+      const maxX = - (
+        Math.ceil(carouselItemCount / 3) * carouselWidth +
+        Math.ceil(carouselItemCount / 3) * carouselItemMargin -
+          carouselWidth -
+          carouselItemMargin
+      ).toFixed(3);
+
+      prevControl.addEventListener("click", function() {
+        if (offset !== 0) {
+          offset = parseFloat(
+            (offset + (carouselWidth + carouselItemMargin)).toFixed(3)
+          );
+          carousel.style.transform = `translateX(${offset}px)`;
+        }
+      });
+
+      nextControl.addEventListener("click", function() {
+        if (offset !== maxX) {
+          offset = parseFloat(
+            (offset - (carouselWidth + carouselItemMargin)).toFixed(3)
+          );
+          carousel.style.transform = `translateX(${offset}px)`;
+        }
+      });
+    </script>
+  </body>
+</html>
