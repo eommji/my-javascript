@@ -7,8 +7,8 @@
     <title>Carousel</title>
     <style>
       * {
-          box-sizing: border-box;
-        }
+        box-sizing: border-box;
+      }
 
       body {
         margin: 0;
@@ -101,29 +101,44 @@
         <li data-target="carousel-item">9</li>
       </ul>
       <div class="carousel-controls">
-        <button class="carousel-controls__prev" data-control="prev">Prev</button>
-        <button class="carousel-controls__next" data-control="next">Next</button class="carousel-controls__next">
+        <button
+          type="button"
+          class="carousel-controls__prev"
+          data-control="prev"
+        >
+          Prev
+        </button>
+        <button
+          type="button"
+          class="carousel-controls__next"
+          data-control="next"
+        >
+          Next
+        </button>
       </div>
     </div>
 
     <script>
       const carousel = document.querySelector("[data-target='carousel']"),
-            carouselItem = carousel.querySelector("[data-target='carousel-item']"),
-            prevControl = document.querySelector("[data-control='prev']"),
-            nextControl = document.querySelector("[data-control='next']");
+        carouselItem = carousel.querySelector("[data-target='carousel-item']"),
+        prevControl = document.querySelector("[data-control='prev']"),
+        nextControl = document.querySelector("[data-control='next']");
 
       const carouselItemStyle = window.getComputedStyle(carouselItem),
-            carouselItemMargin = parseInt(carouselItemStyle.marginRight),
-            carouselWidth = parseFloat(carouselItemStyle.width) * 3 + carouselItemMargin * 2,
-            carouselItemCount = carousel.querySelectorAll("[data-target='carousel-item']").length;
+        carouselItemMargin = parseInt(carouselItemStyle.marginRight),
+        carouselWidth =
+          parseFloat(carouselItemStyle.width) * 3 + carouselItemMargin * 2,
+        carouselItemCount = carousel.querySelectorAll(
+          "[data-target='carousel-item']"
+        ).length;
 
       let offset = 0;
 
-      const maxX = - (
+      const maxX = -(
         Math.ceil(carouselItemCount / 3) * carouselWidth +
         Math.ceil(carouselItemCount / 3) * carouselItemMargin -
-          carouselWidth -
-          carouselItemMargin
+        carouselWidth -
+        carouselItemMargin
       ).toFixed(3);
 
       prevControl.addEventListener("click", function() {
