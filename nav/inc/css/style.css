@@ -1,0 +1,114 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #333;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+}
+
+.nav-link > a {
+  display: block;
+  border: 1px solid red;
+  background-color: cadetblue;
+  padding: 20px 80px;
+  text-decoration: none;
+}
+
+.nav-content-container {
+  position: absolute;
+  display: none;
+  opacity: 0;
+  transform: rotateX(-15deg);
+  transform-origin: center -20px;
+}
+.nav-content-container.show {
+  display: block;
+  transition: transform 0.3s, opacity 0.3s;
+}
+.nav-content-container.open {
+  opacity: 1;
+  transform: rotateX(0);
+}
+
+.nav-content {
+  background-color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.176) 0px 16px 48px 0px;
+  position: absolute;
+  overflow: hidden;
+  left: 0;
+  top: 0;
+  transition: opacity 0.3s;
+  z-index: 1;
+  transform: translateX(0);
+}
+.nav-content.is-visible {
+  transition: width 0.3s, height 0.3s, transform 0.3s;
+}
+
+.nav-content-item {
+  position: absolute;
+  height: auto;
+  opacity: 0;
+  overflow: hidden;
+  z-index: 0;
+}
+.nav-content-item.active {
+  opacity: 1;
+  z-index: 1;
+}
+.nav-content-item.item01 {
+  width: 300px;
+}
+.nav-content-item.item02 {
+  width: 200px;
+}
+.nav-content-item.item03 {
+  width: 400px;
+}
+.nav-content-item.item04 {
+  width: 300px;
+}
+
+@-webkit-keyframes slideDownIn {
+  0% {
+    transform: translateY(-20px) scale(0.9, 0.7);
+  }
+  100% {
+    transform: translateY(0) scale(1, 1);
+  }
+}
+
+@keyframes slideDownIn {
+  0% {
+    transform: translateY(-20px) scale(0.9, 0.7);
+  }
+  100% {
+    transform: translateY(0) scale(1, 1);
+  }
+}
+.nav-caret {
+  position: absolute;
+  box-shadow: -3px -3px 5px rgba(80, 90, 120, 0.05);
+  left: 0;
+  top: -8px;
+  margin-left: -8px;
+  transition: opacity 0.3s;
+  will-change: transform;
+  width: 0px;
+  height: 0px;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid #fff;
+}
+.nav-caret.is-visible {
+  transition: transform 0.3s, opacity 0.3s;
+}/*# sourceMappingURL=style.css.map */
