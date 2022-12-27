@@ -1,3 +1,4 @@
-# my-func
+# my-javascript
+
 * Carousel
 * Nav
