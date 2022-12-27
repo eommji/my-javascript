@@ -17,10 +17,11 @@ body {
 
 .nav-link > a {
   display: block;
-  border: 1px solid red;
-  background-color: cadetblue;
+  border: 1px solid#000;
+  background-color: #222;
   padding: 20px 80px;
   text-decoration: none;
+  color: #eee;
 }
 
 .nav-content-container {
@@ -30,10 +31,12 @@ body {
   transform: rotateX(-15deg);
   transform-origin: center -20px;
 }
+
 .nav-content-container.show {
   display: block;
   transition: transform 0.3s, opacity 0.3s;
 }
+
 .nav-content-container.open {
   opacity: 1;
   transform: rotateX(0);
@@ -50,6 +53,7 @@ body {
   z-index: 1;
   transform: translateX(0);
 }
+
 .nav-content.is-visible {
   transition: width 0.3s, height 0.3s, transform 0.3s;
 }
@@ -61,19 +65,24 @@ body {
   overflow: hidden;
   z-index: 0;
 }
+
 .nav-content-item.active {
   opacity: 1;
   z-index: 1;
 }
+
 .nav-content-item.item01 {
   width: 300px;
 }
+
 .nav-content-item.item02 {
   width: 200px;
 }
+
 .nav-content-item.item03 {
   width: 400px;
 }
+
 .nav-content-item.item04 {
   width: 300px;
 }
@@ -95,6 +104,7 @@ body {
     transform: translateY(0) scale(1, 1);
   }
 }
+
 .nav-caret {
   position: absolute;
   box-shadow: -3px -3px 5px rgba(80, 90, 120, 0.05);
@@ -109,6 +119,7 @@ body {
   border-right: 8px solid transparent;
   border-bottom: 8px solid #fff;
 }
+
 .nav-caret.is-visible {
   transition: transform 0.3s, opacity 0.3s;
-}/*# sourceMappingURL=style.css.map */
+}
