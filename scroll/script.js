@@ -81,29 +81,30 @@ const slideMargin = parseInt(document.querySelector('.swiper-slide').style.margi
 const slidesWidth = sum + (slideMargin * (slides.length - 1));
 
 
-const bodyWidth = document.querySelector('body').offsetWidth;
-const bodyWidthHalf = document.querySelector('body').offsetWidth / 2; // 252
-
+const swiperWidth = document.querySelector('.swiper').offsetWidth;
+const swiperWidthHalf = swiperWidth / 2;
 
 
 const handleCenter = (targetSlide) => {
   const targetSlidePos = targetSlide.offsetLeft + (targetSlide.offsetWidth / 2);
   let xPos = 0;
 
-  if (targetSlidePos <= bodyWidthHalf) {
+  if (targetSlidePos <= swiperWidthHalf) {
     // 앞쪽에 위치하고 있어서 앞에 붙음
-    // return;을 해도 되는지 아님 xPos = 0;을 해야 하는지
-  } else if ((slidesWidth - targetSlidePos) <= bodyWidthHalf) {
+    xPos = 0;
+  } else if ((slidesWidth - targetSlidePos) <= swiperWidthHalf) {
     // 뒤쪽에 위치하고 있어서 뒤에 붙음
-    xPos = -(slidesWidth - bodyWidth);
-    // wrapper.style.transform = `translate3d(${-(slidesWidth - bodyWidth)}px, 0px, 0px)`;
+    xPos = -(slidesWidth - swiperWidth);
+    // wrapper.style.transform = `translate3d(${-(slidesWidth - swiperWidth)}px, 0px, 0px)`;
   } else {
     // 이동함
-    xPos = -(targetSlidePos - bodyWidthHalf);
-    // wrapper.style.transform = `translate3d(${-(targetSlidePos - bodyWidthHalf)}px, 0px, 0px)`;
+    xPos = -(targetSlidePos - swiperWidthHalf);
+    // wrapper.style.transform = `translate3d(${-(targetSlidePos - swiperWidthHalf)}px, 0px, 0px)`;
   }
 
-  // wrapper.style.transform = `translate3d(0px, 0px, 0px)`;
+  if (slidesWidth > swiperWidth) {
+    wrapper.style.transform = `translate3d(${xPos}px, 0px, 0px)`;
+  }
 }
 
 
@@ -115,10 +116,13 @@ const menuClick = () => {
   wrapper.addEventListener('click', e => {
     const targetSlide = e.target.closest('.swiper-slide');
 
-    handleCenter(targetSlide);
     // isPending = true;
 
     if (!targetSlide) return;
+
+    handleCenter(targetSlide);
+
+
     slides.forEach(e => e.classList.remove(on_CN));
     targetSlide.classList.add(on_CN);
 
