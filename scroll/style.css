@@ -28,6 +28,7 @@ span {
   height: 50px;
   background-color: #fff;
   border: 1px solid #000000;
+  transition: background-color 0.1s ease-in-out;
 }
 
 .menus {
