@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>tabs</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <!-- tabs -->
+  <div class="tabs">
+    <ul class="tab-list">
+      <li class="active"><a href="#">tab 1</a></li>
+      <li><a href="#">tab 2</a></li>
+    </ul>
+    <div class="tab-content">
+      <div class="tab-panel">
+        tab content 1
+      </div>
+      <div class="tab-panel">
+        tab content 2
+      </div>
+    </div>
+  </div>
+  <!-- //tabs -->
+  <hr>
+  <!-- tabs in tabs -->
+  <div class="tabs">
+    <ul class="tab-list">
+      <li class="active"><a href="#">tab 1</a></li>
+      <li><a href="#">tab 2</a></li>
+    </ul>
+    <div class="tab-content">
+      <div class="tab-panel">
+        tab content 1
+
+        <div class="tabs">
+          <ul class="tab-list">
+            <li class="active"><a href="#">tab 1-1</a></li>
+            <li><a href="#">tab 1-2</a></li>
+          </ul>
+          <div class="tab-content">
+            <div class="tab-panel">
+              tab content 1-1
+            </div>
+            <div class="tab-panel">
+              tab content 1-2
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="tab-panel">
+        tab content 2
+      </div>
+    </div>
+  </div>
+  <!-- //tabs in tabs -->
+</body>
+
+</html>

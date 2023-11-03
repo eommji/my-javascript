@@ -1,0 +1,39 @@
+.tabs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tab-list {
+  list-style: none;
+  display: inline-flex;
+}
+
+.tab-list li {
+  flex: 1;
+  position: relative;
+}
+
+.tab-list li a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 240px;
+  padding: 15px 0;
+  border-bottom: 4px solid transparent;
+  font-weight: 600;
+  font-size: 30px;
+  text-decoration: none;
+}
+
+.tab-list li.active a {
+  border-bottom-color: red;
+}
+
+.tab-panel {
+  display: none;
+}
+
+.tab-panel.active {
+  display: block;
+}
